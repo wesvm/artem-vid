@@ -1,13 +1,34 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { router } from '@/setup/routes';
+import { AuthProvider } from '@/setup/auth-context';
+
 import './index.css'
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 
-import { Button } from '@/components/ui/button'
+const container = document.getElementById("root");
+const root = createRoot(container!);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
-createRoot(document.getElementById('root')!).render(
+root.render(
   <StrictMode>
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>woaaaaaaaaaaat</Button>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme='system' storageKey='ui-theme'>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+        <Toaster richColors />
+      </ThemeProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )
