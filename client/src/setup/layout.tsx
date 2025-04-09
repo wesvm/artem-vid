@@ -9,7 +9,7 @@ export const Layout = () => {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
-        <div className="container contain-size px-4 lg:px-5">
+        <div className="@container/main px-4 lg:px-5 gap-4 py-4 md:gap-6 md:py-6">
           <Outlet />
         </div>
       </SidebarInset>

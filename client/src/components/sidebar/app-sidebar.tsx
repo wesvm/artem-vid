@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Droplet, User, UsersRound } from "lucide-react";
+import { Droplet, LogOut, User, UsersRound } from "lucide-react";
 import { NavMain } from "@/components/sidebar/nav-main";
 import {
   Sidebar,
@@ -10,6 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { LogoutModal } from "@/components/auth/logout-modal";
+import { useState } from "react";
 
 export const items = {
   main: [
@@ -27,6 +29,7 @@ export const items = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [open, setOpen] = useState(false);
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -47,7 +50,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={items.main} />
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              variant="outline"
+              onClick={() => setOpen(true)}
+              className="justify-center h-10"
+            >
+              <LogOut className="size-4" aria-hidden="true" />
+              <span className="group-data-[collapsible=icon]:hidden">
+                Cerrar sesión
+              </span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+      <LogoutModal open={open} onOpenChange={setOpen} />
     </Sidebar>
   );
 }

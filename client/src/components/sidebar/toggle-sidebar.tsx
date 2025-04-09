@@ -10,7 +10,7 @@ export function ToggleSidebar() {
   return (
     <Button
       onClick={toggleSidebar}
-      className="rounded-md -ml-1"
+      className="rounded-md"
       variant="outline"
       size="icon"
     >
