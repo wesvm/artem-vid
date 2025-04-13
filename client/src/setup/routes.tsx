@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import { ProtectedRoute } from "@/setup/protected-route";
 import { Layout } from "@/setup/layout";
 import LoginPage from "@/pages/LoginPage";
+import UsersPage from "@/pages/users";
+import CustomersPage from "@/pages/customers";
 
 export const router = createBrowserRouter([
   {
@@ -19,15 +21,15 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>home</div>,
+        element: <div>welcome!</div>,
       },
       {
         path: "users",
-        element: <div>users</div>,
+        element: <UsersPage />,
       },
       {
         path: "customers",
-        element: <div>customers</div>,
+        element: <CustomersPage />,
       },
     ],
   },
