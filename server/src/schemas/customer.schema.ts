@@ -11,7 +11,7 @@ export const customerSchema = z.object({
   province: z.string().max(50).optional(),
   district: z.string().max(50).optional(),
   phone: z.string().max(20).optional(),
-  email: z.string().max(100).email().optional(),
+  email: z.string().max(100).email().optional().or(z.literal("")),
 })
 
 export const customerCreateSchema = customerSchema.omit({ id: true })
