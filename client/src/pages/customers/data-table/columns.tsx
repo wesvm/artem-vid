@@ -1,9 +1,17 @@
 import type { ColumnDef } from "@tanstack/react-table";
+import { RowActions } from "@/pages/customers/data-table/row-actions";
 
 export const columns: ColumnDef<Customer>[] = [
   {
     accessorKey: "id",
     header: "Id",
+    cell: ({ row }) => {
+      return (
+        <div className="max-w-20 overflow-hidden text-ellipsis whitespace-nowrap">
+          <span>{row.getValue("id")}</span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "documentType",
@@ -11,7 +19,7 @@ export const columns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: "documentNumber",
-    header: "Número de documento",
+    header: "N° de documento",
   },
   {
     accessorKey: "name",
@@ -47,5 +55,6 @@ export const columns: ColumnDef<Customer>[] = [
   },
   {
     id: "actions",
+    cell: ({ row }) => <RowActions row={row.original} />,
   },
 ];
