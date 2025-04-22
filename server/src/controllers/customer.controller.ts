@@ -29,3 +29,8 @@ export const createCustomer = async (req: Request, res: Response, next: NextFunc
     next(error);
   }
 }
+
+export const updateCustomer = async (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).json({ message: 'update customer' });
+}
+
